@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    {% for month in months %}
+        {% if month.enabled %}
+        <div> {{ month.month }} </div>
+        {% else %}
+        <div>---</div>
+        {% endif %}
+    {% endfor %}
+{% endblock content %}

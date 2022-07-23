@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>Comment detail</title>
+{% endblock title %}
+
+{% block content %}
+    {% if comment %}
+        <div>{{ comment.content }}</div>
+    {% else %}
+        <div>Comment with id: {{ comment_id }} does not exist</div>
+    {% endif %}
+{% endblock content %}

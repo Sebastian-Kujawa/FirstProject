@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>Post Deletion</title>
+{% endblock title %}
+
+{% block content %}
+    {% if is_deleted %}
+        <div>
+        Post {{ post.post_title }} with an id {{ post.post_id }} has been deleted successfully
+        </div>
+    {% else %}
+        {% if post_id %}
+            <div>
+                Post with an id: {{ comment_id }} does not exist or you cannot access it
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div>
+        <a href="{% url 'blog:post_list' %}">Go to the posts list</a>
+    </div>
+
+{% endblock content %}
+

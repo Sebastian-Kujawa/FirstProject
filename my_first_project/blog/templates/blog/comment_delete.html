@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>Comment Deletion</title>
+{% endblock title %}
+
+{% block content %}
+    {% if is_deleted %}
+        <div>
+        Comment {{ comment.content }} with an id {{ comment.id }} has been deleted successfully
+        </div>
+    {% else %}
+        {% if comment_id %}
+            <div>
+                Comment with an id: {{ comment_id }} does not exist or you cannot access it
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div>
+        <a href="{% url 'blog:comment_list' %}">Go to the comments list</a>
+    </div>
+
+{% endblock content %}
+

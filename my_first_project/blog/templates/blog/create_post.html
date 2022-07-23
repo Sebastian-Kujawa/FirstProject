@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <hr>
+    </br>
+
+    <form action="{% url 'blog:cbv_post_create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="OK">
+</form>
+
+    </br>
+    <hr>
+
+    </br>
+    </br>
+
+    {% if post %}
+        <hr>
+        <div>
+        {{ post }} has been created successfully! <br>
+        Title: {{ post.title }} <br>
+        Content: {{ post.content }} <br>
+        Author: {{ post.author.id }} <br>
+        Link: <a href="{% url 'blog:post_detail' post.id %}">Przejdź do posta</a>
+        </div>
+        <hr>
+    {% endif %}
+
+    {% if errors %}
+        <hr>
+        <div>
+            Invalid user id {{ author_id }} has been given, such author does not exist
+        </div>
+        <hr>
+    {% endif %}
+    <div>
+        <a href="{% url 'blog:post_list' %}">Wyświetl listę postów</a>
+    </div>
+{% endblock %}

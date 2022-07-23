@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Context</title>
+</head>
+<body>
+    <div>
+        Numbers: {{ numbers }}
+    </div>
+    <div>Enabled: {{ enabled }}</div>
+    <div>Pętla for</div>
+    {% if enabled %}
+
+    {% for number in numbers %}
+        <div> Current number: {{ number }} </div>
+    {% endfor %}
+
+    {% else %}
+        <div> Nie ma pętli </div>
+    {% endif %}
+
+</body>
+</html>

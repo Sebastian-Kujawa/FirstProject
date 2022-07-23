@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <hr>
+    </br>
+    {% if not_authenticated %}
+        <div>
+            You have to be logged in to enable creating comments
+        </div>
+    {% else %}
+    <form action="{% url 'blog:comment_create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="OK">
+{#    <button type="submit" class="btn btn-primary">Primary</button>#}
+</form>
+    {% endif %}
+    </br>
+    <hr>
+
+    </br>
+    </br>
+
+    {% if comment %}
+        <hr>
+        <div>
+        {{ comment }} has been created successfully! <br>
+        Post: {{ comment.post }} <br>
+        Content: {{ comment.content }} <br>
+        Author id: {{ comment.author.id }} <br>
+        Link: <a href="{% url 'blog:comment_detail' comment.id %}">Przejdź do komentarza</a>
+        </div>
+        <hr>
+    {% endif %}
+
+    {% if errors %}
+        <hr>
+        <div>
+            {% if post_id %}
+                Invalid post id {{ post_id }} has been given, such post does not exist
+            {% endif %}
+            {% if author_id %}
+                Invalid user id {{ author_id }} has been given, such author does not exist
+            {% endif %}
+        </div>
+        <hr>
+    {% endif %}
+    <div>
+        <a href="{% url 'blog:comment_list' %}">Wyświetl listę komentarzy</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+<title>Comments_List</title>
+{% endblock title %}
+
+{% block content %}
+    {% for list_comments in list_comments %}
+      <div>{{ list_comments }}</div>
+    {% endfor %}
+{% endblock content %}

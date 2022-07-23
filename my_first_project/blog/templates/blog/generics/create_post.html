@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %}
+<title>Post</title>
+{% endblock title %}
+<title>Create post</title>
+{% block content %}
+
+    <form action="{% url 'generic_blog:post_create' %}" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
+    {% if object %}
+    <div>
+        {{ post.title }}
+    </div>
+    <div>
+        {{ post.content }}
+    </div>
+    {% endif %}
+{% endblock content %}

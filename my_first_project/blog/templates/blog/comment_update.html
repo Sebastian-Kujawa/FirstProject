@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>Update comment</title>
+{% endblock title %}
+
+{% block content %}
+
+    <hr>
+    </br>
+    {% if errors %}
+        <div>
+        {{ errors }}
+        </div>
+        <div>
+            Comment with an id: {{ comment_id }} does not exist or you cannot access it
+        </div>
+        <div>
+            <a href="{% url 'blog:comment_list' %}">Go to comments list</a>
+        </div>
+    {% else %}
+    <div>
+        <span>
+            Author: {{ comment.author.first_name }} {{ comment.author.last_name }} <br>
+        </span>
+        <span>
+            Content: {{ comment.content }} <br>
+        </span>
+        <span>
+            Post: {{ comment.post.title }} <br>
+        </span>
+        <span>
+            Link: <a href="{% url 'blog:comment_detail' comment.id %}">Go to the comment</a>
+        </span>
+    </div>
+    <hr>
+
+    <form action="{% url 'blog:cbv_comment_update' comment.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+    {% endif %}
+    </br>
+{% endblock %}

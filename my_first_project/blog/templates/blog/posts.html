@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block title %}
+<title>Posts</title>
+{% endblock title %}
+
+{% block content %}
+    {% for post in posts %}
+        <div>
+            <a href="{% url 'blog:cbv_post_detail' post.id %}"> Post: {{ post.title }} written by: {{ post.author.username }} </a>  <a href="{% url 'blog:cbv_post_delete' post.id %}"> Usuń </a>
+        </div>
+
+    {% endfor %}
+{% endblock content %}

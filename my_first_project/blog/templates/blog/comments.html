@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+<title>Comments</title>
+{% endblock title %}
+
+{% block content %}
+    {% for comment in comments %}
+        <div>
+            <a href="{% url 'blog:cbv_comment_detail' comment.id %}">{{ comment }}</a> <a href="{% url 'blog:cbv_comment_delete' comment.id %}"> Delete </a>
+        </div>
+    {% endfor %}
+{% endblock content %}

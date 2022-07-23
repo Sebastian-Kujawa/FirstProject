@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>Update post</title>
+{% endblock title %}
+
+{% block content %}
+
+    <hr>
+    </br>
+    {% if errors %}
+        <div>
+            Post with an id: {{ post_id }} does not exist or you cannot access it
+        </div>
+        <div>
+            <a href="{% url 'blog:post_list' %}">Go to post list</a>
+        </div>
+    {% else %}
+    <div>
+        <span>
+            Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+        </span>
+        <span>
+            Title: {{ post.title }} <br>
+        </span>
+        <span>
+            Content: {{ post.content }} <br>
+        </span>
+        <span>
+            Link: <a href="{% url 'blog:post_detail' post.id %}">Go to the post</a>
+        </span>
+    </div>
+    <hr>
+
+    <form action="{% url 'blog:cbv_post_update' post.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+    {% endif %}
+    </br>
+{% endblock %}
